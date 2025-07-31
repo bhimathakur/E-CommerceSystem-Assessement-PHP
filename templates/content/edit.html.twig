@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<script src="https://cdn.tiny.cloud/1/c035ocdv1k9ybof2urxdbacbhaqqyll0u90kjuendek9agij/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+       
+        <script>
+        
+            tinymce.init({
+    selector: 'textarea',
+    plugins: [
+      // Core editing features
+      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+      // Your account includes a free trial of TinyMCE premium features
+      // Try the most popular premium features until Aug 7, 2025:
+      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+    ],
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+  });
+        </script>
+
+	<div class="register-form">
+		<h5>Edit Product</h5>
+		<div>
+			{% if response is not null and response is not empty %}
+				{% if response is iterable %}
+					{% for key, values, error in response %}
+						{% for item in values %}
+							<div class="alert alert-danger">
+								{{item}}
+							</div>
+						{% endfor %}
+					{% endfor %}
+				{% else %}
+					{{response}}
+				{% endif %}
+			{% endif %}
+		</div>
+		{{ form_start(form) }}
+		{{ form_row(form.title) }}
+		{{ form_row(form.image) }}
+		<img src='{{asset("upload/#{form.vars.data.image}")}}' width="100px" height="100px">
+		{{ form_row(form.description) }}
+		{{ form_row(form.submit) }}
+		{{ form_end(form, {'render_rest': false}) }}
+	</div>
+{% endblock %}

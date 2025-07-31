@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container" style="max-width: 1360px;">
+		<h4>
+			<a href="{{path('category_add')}}" class="link-primary">Add Category</a>
+		</h4>
+		<div class="row">
+			<div class="col-md-2">Category</div>
+			<div class="col-md-2">Parent Category</div>
+			<div class="col-md-2">Image</div>
+			<div class="col-md-3">Description</div>
+			<div class="col-md-2">Status</div>
+			<div class="col-md-1">Action</div>
+		</div>
+
+		{% for category in categories%}
+			<div class="row">
+				<div class="col-md-2">{{category.category}}</div>
+				<div class="col-md-2">{{category.parent_category}}</div>
+				<div class="col-md-2"><img src='{{asset("upload/#{category.image}")}}' width="100px" height="100px" alt="product image"></div>
+				<div class="col-md-3">{{category.description|striptags|slice(0,50)}}</div>
+				<div class="col-md-2">{{category.status}}</div>
+				<div class="col-md-1">
+					<a href="{{path('category_edit', {id: category.id})}}" class="link-secondary">Edit</a>
+				</div>
+			</div>
+		{% endfor %}
+
+		{% if categories is empty %}
+			<div class='row' style='text-align:center; color:red;'>
+				<div class="col-md-10">No record found</div>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

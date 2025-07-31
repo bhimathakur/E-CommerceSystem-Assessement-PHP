@@ -1,0 +1,290 @@
+.odd-row {
+  background: rgb(243, 227, 227);
+}
+
+.even-row {
+  background: rgb(196, 185, 185);
+}
+
+.title {
+  font-weight: bold;
+  background: rgb(43, 41, 41);
+  color: white;
+}
+
+.search {
+  margin-bottom: 10px;
+  padding: 10px 10px;
+}
+
+.no-record {
+  text-align: center;
+  color: red;
+}
+
+.loading {
+  margin: 10px 0px 0px 500px;
+}
+
+.footer {
+  background: rgb(43, 41, 41);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100
+}
+
+.footer span {
+  margin-left: 50px;
+}
+
+.image-container {
+  position: relative;
+  width: 1360px;
+  /* Example width */
+  height: 500px;
+  /* Example height */
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensures the image covers the container */
+}
+
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Centers the text */
+  color: white;
+  /* Example text color */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black background */
+  padding: 10px;
+  /* Add some padding for readability */
+}
+
+.register-form {
+  margin-left: 400px;
+}
+
+
+.register-form label {
+  width: 120px;
+}
+
+.register-form input {
+  margin-top: 5px;
+}
+
+.register-form select {
+  margin-top: 8px;
+  padding: 5px;
+  width: 190px
+}
+
+.access-denied {
+  margin: 20px;
+}
+
+.category {
+  margin-left: 52px;
+}
+
+.description {
+  margin-top: 5px;
+}
+
+.disabled {
+  color: gray;
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.heading {
+  margin: 50px;
+  width: 70px;
+  font-weight: bold;
+}
+
+.category_list {
+  margin: 50px;
+  width: 70px;
+}
+
+
+.card-stepper {
+  z-index: 0
+}
+
+#progressbar-2 {
+  color: #455A64;
+}
+
+#progressbar-2 li {
+  list-style-type: none;
+  font-size: 13px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+
+#progressbar-2 #step1:before {
+  content: '\f058';
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+#progressbar-2 #step2:before {
+  content: '\f058';
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+}
+
+#progressbar-2 #step3:before {
+  content: '\f058';
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-right: 0;
+  text-align: center;
+}
+
+#progressbar-2 #step4:before {
+  content: '\f058';
+  font-family: "Font Awesome 5 Free";
+  color: #fff;
+  width: 37px;
+  margin-right: 0;
+  text-align: center;
+}
+
+#progressbar-2 li:before {
+  line-height: 37px;
+  display: block;
+  font-size: 12px;
+  background: #c5cae9;
+  border-radius: 50%;
+}
+
+#progressbar-2 li:after {
+  content: '';
+  width: 100%;
+  height: 10px;
+  background: #c5cae9;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 15px;
+  z-index: -1;
+}
+
+#progressbar-2 li:nth-child(1):after {
+  left: 1%;
+  width: 100%
+}
+
+#progressbar-2 li:nth-child(2):after {
+  left: 1%;
+  width: 100%;
+}
+
+#progressbar-2 li:nth-child(3):after {
+  left: 1%;
+  width: 100%;
+  background: #c5cae9 !important;
+}
+
+#progressbar-2 li:nth-child(4) {
+  left: 0;
+  width: 37px;
+
+}
+
+#progressbar-2 li:nth-child(4):after {
+  left: 0;
+  width: 0;
+}
+
+#progressbar-2 li.active:before,
+#progressbar-2 li.active:after {
+  background: #6520ff;
+}
+
+.orderTrack {
+  margin-left: 370px;
+}
+
+.invalid-order-id {
+  height: 350px;
+  text-align: center;
+  margin-left: 40px;
+  color: red;
+  margin-top: 20px;
+}
+
+.progress {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.progress>li {
+  position: relative;
+  display: table-cell;
+  text-align: center;
+}
+
+.progress>li:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  background: #dfe3e4;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+}
+
+.progress>li:after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: #dfe3e4;
+  width: 100%;
+  height: 0.25em;
+  top: 0.875em;
+  /* Adjust based on :before height */
+  left: 50%;
+  z-index: 1;
+}
+
+.progress>li:last-child:after {
+  display: none;
+  /* Hide line after the last step */
+}
+
+.progress>li.is-complete:before,
+.progress>li.is-complete:after {
+  background: #2ecc71;
+  /* Color for complete steps */
+}
+
+.progress>li.is-active:before {
+  background: #3498db;
+  /* Color for active step */
+}

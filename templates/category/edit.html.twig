@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<div class="register-form">
+		<h5>Update Category</h5>
+		{% set catId = app.request.attributes.get('_route_params')['id'] %}
+		{{ form_start(form) }}
+		<div>
+			<div>
+				{% if response is not null and response is not empty %}
+					{% if response is iterable %}
+						{% for key, values, error in response %}
+							{% for item in values %}
+								<div class="alert alert-danger">
+									{{item}}
+								</div>
+							{% endfor %}
+						{% endfor %}
+					{% else %}
+						{{response}}
+					{% endif %}
+				{% endif %}
+			</div>
+			<span>Category</span>
+			<span class="category">
+				<select name="category[sub_cat_id]" id="category">
+					<option value="0">Select Category</option>
+					{% for category in categories %}
+						<option value="{{category.id}}" {% if category.id == form.vars.data.subCatId %} selected='selected' {% endif %}>{{category.title}}</option>
+					{% endfor %}
+				</select>
+			</span>
+		</div>
+		{{ form_row(form.title) }}
+		{{ form_row(form.image) }}
+		<img src='{{asset("upload/#{form.vars.data.image}")}}' width="100px" height="100px">
+		{{ form_row(form.description) }}
+		{{ form_row(form.submit) }}
+		{{ form_end(form, {'render_rest': false}) }}
+	</div>
+	<script>
+		document.getElementById('category_image').removeAttribute('required');
+	</script>
+{% endblock %}

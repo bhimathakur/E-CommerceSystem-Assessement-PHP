@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="register-form">
+		<script src="https://cdn.tiny.cloud/1/c035ocdv1k9ybof2urxdbacbhaqqyll0u90kjuendek9agij/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+		<h5>Add Category/Sub category !</h5>
+		<div>
+			{{ form_start(form) }}
+			{% if response is not null and response is not empty %}
+				<div class="alert alert-danger">
+					{% if response is iterable %}
+						{% for key, values, error in response %}
+							{% for item in values %}
+								<div>
+									{{item}}
+								</div>
+							{% endfor %}
+						{% endfor %}
+					{% else %}
+						{{response}}
+					{% endif %}
+				</div>
+
+			{% endif %}
+			<div class="col-sm-5">
+				<span>Category</span>
+				<span class="category">
+					<select name="category[sub_cat_id]" id="category">
+						<option value="0">Select Category</option>
+						{% for category in categories %}
+							<option value="{{category.id}}">{{category.title}}</option>
+						{% endfor %}
+					</select>
+				</span>
+			</div>
+			{{ form_row(form.title) }}
+			{{ form_row(form.image) }}
+			<div class="col-lg-9 description">
+
+				{{ form_row(form.description) }}
+			</div>
+			{{ form_row(form.submit) }}
+			{{ form_end(form, {'render_rest': false}) }}
+		</div>
+	</div>
+
+{% endblock %}

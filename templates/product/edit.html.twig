@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+	<div class="register-form">
+
+		<h5>Edit Product</h5>
+
+		<div>
+			{% if response is not null and response is not empty %}
+
+
+				{% if response is iterable %}
+					{% for key, values, error in response %}
+						{% for item in values %}
+							<div class="alert alert-danger">
+								{{item}}
+							</div>
+						{% endfor %}
+					{% endfor %}
+				{% else %}
+					{{response}}
+				{% endif %}
+			{% endif %}
+		</div>
+		{{ form_start(form) }}
+		{{ form_row(form.category) }}
+		{{ form_row(form.subcat_id) }}
+		{{ form_row(form.title) }}
+		{{ form_row(form.price) }}
+
+		{{ form_row(form.image) }}
+		<img src='{{asset("upload/#{form.vars.data.image}")}}' width="100px" height="100px">
+		{{ form_row(form.description) }}
+		{{ form_row(form.submit) }}
+
+
+		{{ form_end(form, {'render_rest': false}) }}
+
+	</div>
+
+
+	<script>
+		const selectElement = document.querySelector("#product_edit_category");
+    selectElement.addEventListener('change', (event) => {
+        getSubcategories(event.target.value);
+    });
+
+    async function getSubcategories(id) {
+        var subCategory = document.getElementById("product_edit_subcat_id");
+        for (let i = subCategory.options.length - 1; i > 0; i--) {
+            subCategory.remove(i);
+        }
+
+    const route = "{{ path('category_sub_category', {id: 'id'}) |escape('js') }}";
+    var url = route.replace('id', id);
+    fetch(url).then((response) => {
+        subCategory.remove(subCategory.options);
+        return response.json();
+    }).then((response) => {
+        for (var i = 0; i < response.length; i++) {
+        var option = document.createElement('option');
+        option.text = response[i].title;
+        option.value = response[i].id;
+        subCategory.add(option, null);
+    }
+});
+
+}
+	</script>
+{% endblock %}

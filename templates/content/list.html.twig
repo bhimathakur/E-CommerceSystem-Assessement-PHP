@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container" style="max-width: 1360px;">
+		<h4>
+			<a href="{{path('content_add')}}" class="link-primary">Add Content</a>
+		</h4>
+		<div class="row" style="font-weight:bold">
+			<div class="col-md-2">Title</div>
+			<div class="col-md-2">Image</div>
+			<div class="col-md-3">Description</div>
+			<div class="col-md-1">Action</div>
+
+		</div>
+
+		{% for content in pageContent %}
+			<div class='row'>
+				<div class="col-md-2">{{content.title}}</div>
+				<div class="col-md-2"><img src='{{asset("upload/#{content.image}")}}' width="100px" height="100px" alt="product image"></div>
+
+				<div class="col-md-7">{{content.description|striptags|slice(0,500)}}</div>
+				<div class="col-md-1">
+					<a href="{{path('content_edit', {id: content.id})}}" class="link-secondary">Edit</a>
+				</div>
+			</div>
+		{% endfor %}
+		{% if pageContent is empty %}
+			<div class='row' style='text-align:center; color:red;'>
+				<div class="col-md-10">No record found</div>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="" style="background-color: 00#8c9eff;">
+		<h4 style="margin-left: 150px;">
+			<a href="{{path('order_list')}}" class="link-primary">Order List</a>
+		</h4>
+		<div class="p-5 orderTrack">
+			<form method="post" action="{{path('order_track')}}">
+				<div class="col-sm-5">
+					Order Id
+					<input type="integer" name="order_id" vlaue="" required='required'>
+					<input type="submit" class="btn btn-primary"  value="Track Order">
+
+				</div>
+			</form>
+		</div>
+		<div class="container py-2 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-12">
+					<div class="card card-stepper" style="border-radius: 16px;">
+						{% if orderTrack.message is defined %}
+							<div class="invalid-order-id">{{orderTrack.message}}</div>
+						{% endif %}
+						{% if orderTrack|length > 2 %}
+							<div class="card-body p-2">
+								<div class="d-flex justify-content-between align-items-center mb-5">
+									<div>
+										<h5 class="mb-0">ORDER ID
+											<span class="text-primary font-weight-bold">100{{orderTrack.orderId}}</span>
+										</h5>
+									</div>
+									<div class="text-end">
+										<p class="mb-0">Expected Arrival
+											<span style='font-weight:bold'>{{orderTrack.expectedDeliveryDate}}</span>
+										</p>
+									</div>
+								</div>
+								<ol class="progress">
+									<li class="{{orderTrack.step.step_1}}" data-step="1">Order Placed</li>
+									<li class="{{orderTrack.step.step_2}} " data-step="2">Processing</li>
+									<li class="{{orderTrack.step.step_3}}" data-step="3">Shipped</li>
+									<li class="{{orderTrack.step.step_4}}" data-step="4">Out for Delivery</li>
+									<li class="{{orderTrack.step.step_5}}" data-step="5">Delivered</li>
+								</ol>
+							</div>
+						{% endif %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
