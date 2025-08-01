@@ -26,16 +26,6 @@ php bin/console doctrine:migrations:migrate
 
 php bin/console doctrine:fixtures:load
 
-
-
-**optional**
-[
-Open the .env file in root dir.
-Replaces APP_ENV=dev with APP_ENV=prod
-Then save file.
-php bin/console clear:cache --env=prod
-]
-
 symfony server:start --port:8081
 
 
